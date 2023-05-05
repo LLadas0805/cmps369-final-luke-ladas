@@ -1,0 +1,53 @@
+extends layout.pug
+
+block content
+    .container
+        .row
+            .col
+                h1 Contact Info
+                if contact != undefined
+                    h2 #{contact.First_Name}  #{contact.Last_Name}
+            .col-auto
+                a(href='/', class='biglink') Back to list
+        
+        .row   
+            hr 
+            .col-lg-6.md-12.mb-3
+                
+                p 
+                    b Phone Number: 
+                    span #{contact.Phone_Number}
+                if contact.Contact_By_Phone > 0
+                    .row
+                        i May be contacted by phone or text
+                else 
+                    .row
+                        i May NOT be contacted by phone or text
+            .col-lg-6.md-12.mb-3
+                p 
+                    b Email address: 
+                    span #{contact.Email_Address}
+                if contact.Contact_By_Email > 0
+                    p 
+                        i May be contacted by email
+                else 
+                    p 
+                        i May NOT be contacted by email
+            .col-lg-6.md-12.mb-3
+                p 
+                    b Address: 
+                    span #{contact.Street}  #{contact.City}  #{contact.State}  #{contact.Zip}  #{contact.Country}
+                if contact.Contact_By_Mail > 0
+                    p 
+                        i May be contacted by mail
+                else 
+                    p 
+                        i May NOT be contacted by mail
+            hr
+        .row
+            .col
+                .btn-group
+                    button.btn.btn-primary
+                        a(href=contact.id + '/edit', class = 'class-style') Edit contact
+                    button.btn.btn-danger
+                        a(href=contact.id + '/delete', class = 'class-style') Delete contact

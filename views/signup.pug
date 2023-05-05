@@ -1,0 +1,44 @@
+extends layout.pug
+
+block content
+    .container(class='formpad')
+        .row.mb-3
+            .col.text-center
+                h1 Sign up 
+        .card.bg-light.mb-3
+                form(action='/signup', method='post').form
+                    .form-group.mb-3
+                        .input-group
+                            .form-floating
+                                input.form-control(type='text', id='FirstName', name='FirstName', placeholder='First Name', required)
+                                label(for='FirstName') First Name
+                            .form-floating
+                                input.form-control(type='text', name='LastName',placeholder='Last Name', required)
+                                label(for='LastName') Last Name
+                    .form-group.mb-3
+                        .form-floating
+                                input.form-control(type='text', placeholder='Username', name='username', id='username', required)
+                                label(for='username') Username
+                    .form-group.mb-3
+                        .vertical-input-group
+                            .input-group
+                                .form-floating
+                                    input.form-control(type='password', placeholder='Password', name='password', id='password', required)
+                                    label(for='password') Password
+                            .input-group
+                                .form-floating
+                                    input.form-control(type='password', name='password2', placeholder='Confirm Password',required)
+                                    label(for='password2') Confirm Password
+                    .form-group.mb-3
+                        .row.align-items-center
+                                .col-auto
+                                    button.btn.btn-primary(type='submit') Sign up
+                                .col-auto
+                                    a(href='/', class = 'link') Nevermind
+                    
+        if message 
+            .alert.alert-warning
+                p #{message}
+        p
+            | Already have an account? 
+            a(href='/login', class='link')  Login!

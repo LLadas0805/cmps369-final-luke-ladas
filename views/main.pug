@@ -1,0 +1,54 @@
+extends layout.pug
+
+block content
+    .container 
+        .row.align-items-center.mb-3
+            .col
+                h1 Contact List
+            .col-auto
+                form(action='/', method='get')
+                    button.btn.btn-lg.btn-primary(type='submit', formaction = '/createcontact')  Create Contact
+        .row.mb-3
+            .col
+                if contacts.length > 0
+                        ul.list-group.list-group-item-light
+                            each c in contacts 
+                                li.list-group-item
+                                    .row
+                                        .col-xl-3.col-lg-6.md-12.mb-3
+                                            a(href=c.id) #{c.Prefix} #{c.First_Name}  #{c.Last_Name}
+                                        .col-xl-3.col-lg-6.md-12.mb-3
+                                            span #{c.Phone_Number}
+                                            p #{c.Email_Address}
+                                        .col-xl-3.col-lg-6.md-12.mb-3
+                                            p #{c.Address} 
+                                        .col-xl-3.col-lg-6.md-12.mb-3
+                                            .form-check
+                                                if c.Contact_By_Phone > 0
+                                                    input.form-check-input(type='checkbox', name='ContactByPhone', disabled checked= true)
+                                                else 
+                                                    input.form-check-input(type='checkbox', name='ContactByPhone', disabled checked= false) 
+                                                .col.col-md-5   
+                                                    label.form-check-label(for='ContactByPhone') Phone
+                                            .form-check 
+                                                if c.Contact_By_Email > 0
+                                                    input.form-check-input(type='checkbox', name='ContactByEmail', disabled checked= true) 
+                                                else 
+                                                    input.form-check-input(type='checkbox', name='ContactByEmail', disabled checked= false) 
+                                                .col.col-md-5  
+                                                    label.form-check-label(for='ContactByEmail') Email
+                                            .form-check 
+                                                if c.Contact_By_Mail > 0
+                                                    input.form-check-input(type='checkbox', name='ContactByMail', disabled checked= true) 
+                                                else 
+                                                    input.form-check-input(type='checkbox', name='ContactByMail', disabled checked= false) 
+                                                .col.col-md-5  
+                                                    label.form-check-label(for='ContactByMail') Mail
+        .row 
+            .col
+                #map-container
+                    #map
+    script(src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js")
+    script(src="/places.js")
+
+                        

@@ -1,0 +1,79 @@
+extends layout.pug
+
+block content
+    .container.pb-5(class='contactpad')
+        .row.mb-1
+            h1 Update Contact
+        .row 
+            .col
+                .card.bg-light
+                    form(action=action='/' + contact.id + '/edit', method='post').form
+                        fieldset
+                            legend Basic Info
+                            .form-group.mb-3
+                                .input-group
+                                    select.form-select(id="Prefix")
+                                        option(value='') Title
+                                        option(value='Mr. ') Mr.
+                                        option(value='Mrs. ') Mrs.
+                                        option(value='Ms. ') Ms.
+                                        option(value='Dr. ') Dr.
+                                    .form-floating(style="width: 30%;")
+                                        input.form-control(type='text', id='FirstName', name='FirstName', placeholder='First Name', value=contact.First_Name, required)
+                                        label(for='FirstName') First Name
+                                    .form-floating(style="width: 30%;")
+                                        input.form-control(type='text', name='LastName',placeholder='Last Name', value=contact.Last_Name, required)
+                                        label(for='LastName') Last Name
+                            .form-group.mb-3
+                                    .form-floating
+                                        input.form-control(type='text', id='PhoneNumber',placeholder='Phone Number', value=contact.Phone_Number, name='PhoneNumber')
+                                        label(for='PhoneNumber') Phone Number
+                            .form-group.mb-3
+                                .form-floating
+                                    input.form-control(type='text', placeholder='Email Address', name='EmailAddress', value = contact.Email_Address, pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", title="Please enter a valid email address" )
+                                    label(for='EmailAddress') Email Address
+                        fieldset 
+                            legend Address
+
+                            .form-group.mb-3
+                                .vertical-input-group
+                                    .input-group
+                                        .form-floating
+                                            input.form-control(type='text', name='Address', placeholder='Address')
+                                            label(for='Address') Address
+                        .row
+                            .col
+                                fieldset
+                                    legend Contact Preferences
+                                    .form-check
+                                        label(for='ContactByPhone') Phone
+                                        if contact.Contact_By_Phone > 0
+                                            input.form-check-input(type='checkbox', name='ContactByPhone', checked = true)
+                                        else 
+                                            input.form-check-input(type='checkbox', name='ContactByPhone', checked = false)
+                                    .form-check
+                                        label(for='ContactByEmail') Email
+                                        if contact.Contact_By_Email > 0
+                                            input.form-check-input(type='checkbox', name='ContactByEmail', checked = true)
+                                        else 
+                                            input.form-check-input(type='checkbox', name='ContactByEmail', checked = false)
+                                    .form-check
+                                        label(for='ContactByMail') Mail
+                                        if contact.Contact_By_Mail > 0
+                                            input.form-check-input(type='checkbox', name='ContactByMail', checked = true)
+                                        else 
+                                            input.form-check-input(type='checkbox', name='ContactByMail', checked = false)
+
+                        .row.pt-3.align-items-center
+                            .col-auto
+                                button.btn.btn-primary(type='submit') Save
+                            .col
+                                a(href='/' + contact.id, class='link') Cancel
+
+
+
+
+
+
+
+    

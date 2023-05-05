@@ -1,0 +1,36 @@
+extends layout.pug
+
+block content
+    .container(class='formpad')
+        .row.mb-3
+            .col.text-center
+                h1 Sign in
+        .row
+            .col
+                .card.bg-light
+                    form(action='/login', method='post')
+                        .form-group.mb-3
+                            .form-floating
+                                input.form-control(type='text', placeholder='Username', name='username', id='username', required)
+                                label(for='username') Username
+                        .form-group.mb-3
+                            .form-floating
+                                input.form-control(type='password', placeholder='Password', name='password', id='password', required)
+                                label(for='password') Password
+
+                        .form-group
+                            .row.align-items-center
+                                .col-auto
+                                    button.btn.btn-primary(type='submit') Sign in
+                                .col-auto
+                                    a(href='/', class='link') Nevermind
+                            
+            
+        .row 
+            .col
+                    if message 
+                                .alert.alert-warning
+                                    p #{message}
+                    p
+                    | Don't have an account yet? 
+                    a(href='/signup', class='link')   Sign up here!

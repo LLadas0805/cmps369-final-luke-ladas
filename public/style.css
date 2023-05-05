@@ -1,0 +1,113 @@
+
+
+.container {
+    padding-top:2em;
+   
+}
+
+.navbar {
+    height: 80px;
+}
+
+
+
+.form-control {
+    padding:1em;
+    
+    height: 40px;
+}
+
+.class-style{
+    
+    color:white;
+    text-decoration: none;
+    
+}
+
+.card {
+    padding: 1em;
+    
+}
+
+.formpad {
+    width: 400px;
+}
+
+.contactpad {
+    position:relative;
+    max-width: 750px;
+}
+
+.form-floating:before {
+
+    pointer-events: none;
+
+ }
+
+ .vertical-input-group .input-group:first-child {
+    padding-bottom: 0;
+}
+.vertical-input-group .input-group:first-child * {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;    
+}
+.vertical-input-group .input-group:last-child {
+    padding-top: 0;
+}
+.vertical-input-group .input-group:last-child * {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.vertical-input-group .input-group:not(:last-child):not(:first-child) {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.vertical-input-group .input-group:not(:last-child):not(:first-child) * {
+    border-radius: 0;
+}  
+.vertical-input-group .input-group:not(:first-child) * {
+    border-top: 0;
+}
+
+.headercol {
+    padding-left: 2em;
+}
+
+.headercolright{
+    padding-right: 2em;
+}
+
+
+.link {
+    font-weight:500;
+}
+.biglink {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.warning {
+  color:rgb(212, 12, 12);
+  font-weight: 500;
+}
+
+
+#map-container {
+    position:relative;
+    padding-bottom: 100%;;
+    margin-bottom:5rem; 
+}
+#map { 
+    position: absolute; 
+    
+    width: 100%;
+    height: 100%;
+}
+
+tr {
+    cursor: pointer;
+ }
+  
+ .select-wrapper {
+    width: 20%; /* adjust to your liking */
+  }

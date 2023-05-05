@@ -1,0 +1,71 @@
+extends layout.pug
+
+block content
+    .container.pb-5(class='contactpad')
+        .row.mb-1
+            h1 Create Contact
+        .row
+            p
+                i Create a contact. The only mandatory information for a contact is their first name. Everything else is optional. If you provide an email address, make sure it includes an '@' symbol!
+        .row 
+            .col
+                .card.bg-light
+                    form(action='/createcontact', method='post').form
+                        fieldset
+                            legend Basic Info
+                            .form-group.mb-3
+                                .input-group
+                                    select.form-select(id="Prefix", name="Prefix")
+                                        option(value='') Title
+                                        option(value='Mr. ') Mr.
+                                        option(value='Mrs. ') Mrs.
+                                        option(value='Ms. ') Ms.
+                                        option(value='Dr. ') Dr.
+                                    .form-floating(style="width: 30%;")
+                                        input.form-control(type='text', id='FirstName', name='FirstName', placeholder='First Name', required)
+                                        label(for='FirstName') First Name
+                                    .form-floating(style="width: 30%;")
+                                        input.form-control(type='text', name='LastName',placeholder='Last Name', required)
+                                        label(for='LastName') Last Name
+                            .form-group.mb-3
+                                    .form-floating
+                                        input.form-control(type='text', id='PhoneNumber',placeholder='Phone Number', name='PhoneNumber')
+                                        label(for='PhoneNumber') Phone Number
+                            .form-group.mb-3
+                                .form-floating
+                                    input.form-control(type='text', placeholder='Email Address', name='EmailAddress', pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", title="Please enter a valid email address" )
+                                    label(for='EmailAddress') Email Address
+                        fieldset 
+                            legend Address
+
+                            .form-group.mb-3
+                                    .input-group
+                                        .form-floating
+                                            input.form-control(type='text', name='Address', placeholder='Address')
+                                            label(for='Address') Address
+                        .row
+                            .col
+                                fieldset
+                                    legend Contact Preferences
+                                    .form-check
+                                        label(for='ContactByPhone') Phone
+                                        input.form-check-input(type='checkbox', name='ContactByPhone')
+                                    .form-check
+                                        label(for='ContactByEmail') Email
+                                        input.form-check-input(type='checkbox', name='ContactByEmail')
+                                    .form-check
+                                        label(for='ContactByMail') Mail
+                                        input.form-check-input(type='checkbox', name='ContactByMail')
+
+                        .row.pt-3.align-items-center
+                            .col-auto
+                                button.btn.btn-primary(type='submit') Add
+                            .col
+                                a(href='/', class='link') Cancel
+                        
+        .row 
+            .col
+                    if message 
+                                .alert.alert-warning
+                                    p #{message}
+                    
