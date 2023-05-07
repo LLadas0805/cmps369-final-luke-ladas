@@ -111,7 +111,7 @@ class ContactDB {
 
    
 
-    async updateContactById(id, val) {
+    async updateContactById(id, val, address, lat, lng) {
         
 
         
@@ -128,7 +128,9 @@ class ContactDB {
         { column: 'Prefix', value: val.Prefix },
         { column: 'Phone_Number', value: val.PhoneNumber },
         { column: 'Email_Address', value: val.EmailAddress },
-        { column: 'Address', value: val.Address }], [{ column: 'id', value: id }]);
+        { column: 'lat', value: lat },
+        { column: 'lng', value: lng },
+        { column: 'Address', value: address }], [{ column: 'id', value: id }]);
         return us;
     }
 

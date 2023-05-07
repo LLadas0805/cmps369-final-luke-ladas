@@ -8,15 +8,19 @@ block content
             .col-auto
                 form(action='/', method='get')
                     button.btn.btn-lg.btn-primary(type='submit', formaction = '/createcontact')  Create Contact
-        .row.mb-3
+        .row.mb-3                           
             .col
                 if contacts.length > 0
-                        ul.list-group.list-group-item-light
+                        p
+                            i This is the main menu for this contact list. Click on a contact's name to find them on the map. Users with accounts can also edit and delete any contacts.
+                        ul.list-group.list-group-item-light(style='max-height: 800px; overflow-y: auto;')
                             each c in contacts 
                                 li.list-group-item
                                     .row
                                         .col-xl-3.col-lg-6.md-12.mb-3
-                                            a(href=c.id) #{c.Prefix} #{c.First_Name}  #{c.Last_Name}
+                                            a(onclick='on_row_click(event)', class="marker-button", data-lat=c.lat, data-lng=c.lng) #{c.Prefix} #{c.First_Name}  #{c.Last_Name}
+
+                                                
                                         .col-xl-3.col-lg-6.md-12.mb-3
                                             span #{c.Phone_Number}
                                             p #{c.Email_Address}
@@ -44,11 +48,29 @@ block content
                                                     input.form-check-input(type='checkbox', name='ContactByMail', disabled checked= false) 
                                                 .col.col-md-5  
                                                     label.form-check-label(for='ContactByMail') Mail
+                                        .row-pt-5.mb-3
+                                            .btn-group
+                                                        button.btn.btn-primary
+                                                            a(href=c.id + '/edit', class = 'class-style') Edit contact
+                                                        button.btn.btn-danger
+                                                            a(href=c.id + '/delete', class = 'class-style') Delete contact
+                else    
+                    p
+                        i This is the main menu for this contact list. The list is currently empty but you can add your own contact by clicking the 'Create Contact' button.
+        hr       
         .row 
             .col
                 #map-container
                     #map
     script(src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js")
     script(src="/places.js")
-
+    script. 
+        const contacts = !{JSON.stringify(contacts)};
+        const contactsArray = [];
+        for (const contact of contacts) {
+            const valuesArray = Object.values(contact);
+            contactsArray.push(valuesArray);
+        }
+        loadPlaces(contactsArray)
+   
                         

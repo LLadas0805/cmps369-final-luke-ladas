@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 
 const Database = require('./contactdb');
@@ -10,6 +11,9 @@ db.initialize();
 
 
 const app = express();
+app.set('view engine', 'pug');
+app.use(express.static('public'));
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Gets call on every request, before the routes.

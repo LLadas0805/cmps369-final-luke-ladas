@@ -12,12 +12,42 @@ block content
                             legend Basic Info
                             .form-group.mb-3
                                 .input-group
-                                    select.form-select(id="Prefix")
-                                        option(value='') Title
-                                        option(value='Mr. ') Mr.
-                                        option(value='Mrs. ') Mrs.
-                                        option(value='Ms. ') Ms.
-                                        option(value='Dr. ') Dr.
+                                    if contact.Prefix === "Mr. "
+                                        select.form-select(id="Prefix", name="prefix")
+                                            option(value='') Title
+                                            option(value='Mr. ', selected) Mr.
+                                            option(value='Mrs. ') Mrs.
+                                            option(value='Ms. ') Ms.
+                                            option(value='Dr. ') Dr.
+                                    if contact.Prefix === "Dr. "
+                                        select.form-select(id="Prefix", name="prefix")
+                                            option(value='') Title
+                                            option(value='Mr. ') Mr.
+                                            option(value='Mrs. ') Mrs.
+                                            option(value='Ms. ') Ms.
+                                            option(value='Dr. ', selected) Dr.    
+                                    if contact.Prefix === "Mrs. "
+                                        select.form-select(id="Prefix", name="prefix")
+                                            option(value='') Title
+                                            option(value='Mr. ') Mr.
+                                            option(value='Mrs. ', selected) Mrs.
+                                            option(value='Ms. ') Ms.
+                                            option(value='Dr. ') Dr.    
+                                    if contact.Prefix === "Ms. "
+                                        select.form-select(id="Prefix", name="prefix")
+                                            option(value='') Title
+                                            option(value='Mr. ') Mr.
+                                            option(value='Mrs. ') Mrs.
+                                            option(value='Ms. ', selected) Ms.
+                                            option(value='Dr. ') Dr.    
+                                    if contact.Prefix === ""
+                                        select.form-select(id="Prefix", name="prefix")
+                                            option(value='', selected) Title
+                                            option(value='Mr. ') Mr.
+                                            option(value='Mrs. ') Mrs.
+                                            option(value='Ms. ') Ms.
+                                            option(value='Dr. ') Dr.  
+                                        
                                     .form-floating(style="width: 30%;")
                                         input.form-control(type='text', id='FirstName', name='FirstName', placeholder='First Name', value=contact.First_Name, required)
                                         label(for='FirstName') First Name
@@ -39,7 +69,7 @@ block content
                                 .vertical-input-group
                                     .input-group
                                         .form-floating
-                                            input.form-control(type='text', name='Address', placeholder='Address')
+                                            input.form-control(type='text', name='Address', placeholder='Address', value=contact.Address)
                                             label(for='Address') Address
                         .row
                             .col
@@ -68,8 +98,12 @@ block content
                             .col-auto
                                 button.btn.btn-primary(type='submit') Save
                             .col
-                                a(href='/' + contact.id, class='link') Cancel
-
+                                a(href='/', class='link') Cancel
+            .row 
+                .col
+                    if message 
+                                .alert.alert-warning
+                                    p #{message}
 
 
 

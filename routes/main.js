@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const geo = require('node-geocoder');
+const geocoder = geo({ provider: 'openstreetmap' })
 
 const logged_in = (req, res, next) => {
     if (req.session.user) {
@@ -13,7 +15,9 @@ router.get('/', async (req, res) => {
     
     let contact = await req.db.findContacts();
     
+
     
+
     res.render('main', {contacts: contact});
 });
 
@@ -22,12 +26,9 @@ router.get('/', async (req, res) => {
     res.redirect('/createcontact');
 });
 router.get('/:id', async (req, res) => {
-    const contact = await req.db.findContactById(req.params.id);
-    if (contact != undefined) {
-        res.render('contactinfo', { contact: contact });
-    } else {
-        res.status(404).send('Page was not found');
-    }
+    
+    res.status(404).send('Page was not found');
+    
     
 });
 
@@ -49,11 +50,24 @@ router.get('/:id/edit', logged_in, async (req, res) => {
 });
 
 router.post('/:id/edit', logged_in, async (req, res) => {
-    const contact = await req.db.updateContactById(req.params.id, req.body);
-    res.db = contact
+
+    const result = await geocoder.geocode(req.body.Address);
+
+    if (result.length > 0) {
+        req.db.updateContactById(req.params.id, req.body, result[0].formattedAddress, result[0].latitude, result[0].longitude);
+    } else {
+
+        const contact = await req.db.findContactById(req.params.id);
+        res.render('edit', { contact: contact, hide_login: true, message: 'Could not find address, please be more specific!' });
+        return;
+        
+    }
+    
     res.redirect('/');
-    return;
+ 
 });
+
+
 
 
 module.exports = router;

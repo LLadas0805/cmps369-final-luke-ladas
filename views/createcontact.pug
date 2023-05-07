@@ -59,7 +59,7 @@ block content
 
                         .row.pt-3.align-items-center
                             .col-auto
-                                button.btn.btn-primary(type='submit') Add
+                                button.btn.btn-primary(type='submit' , onclick='addPlace()') Add
                             .col
                                 a(href='/', class='link') Cancel
                         
@@ -68,4 +68,6 @@ block content
                     if message 
                                 .alert.alert-warning
                                     p #{message}
+    script(src="/places.js")
+    
                     

@@ -94,7 +94,7 @@
 
 #map-container {
     position:relative;
-    padding-bottom: 100%;;
+    padding-bottom: 100%;
     margin-bottom:5rem; 
 }
 #map { 
@@ -110,4 +110,11 @@ tr {
   
  .select-wrapper {
     width: 20%; /* adjust to your liking */
+  }
+
+  .marker-button {
+    cursor:pointer;
+     color:rgb(71, 130, 224);
+     text-decoration:underline;
+     font-weight:600;
   }
