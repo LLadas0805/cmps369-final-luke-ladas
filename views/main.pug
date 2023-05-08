@@ -50,6 +50,7 @@ block content
                                                     label.form-check-label(for='ContactByMail') Mail
                                         .row-pt-5.mb-3
                                             .btn-group
+                                                if account > 0
                                                         button.btn.btn-primary
                                                             a(href=c.id + '/edit', class = 'class-style') Edit contact
                                                         button.btn.btn-danger

@@ -14,11 +14,15 @@ const logged_in = (req, res, next) => {
 router.get('/', async (req, res) => {
     
     let contact = await req.db.findContacts();
+    let account;
+    if (req.session.user) {
+        account = 1;
+    } else {
+        account = 0;
+    }
     
 
-    
-
-    res.render('main', {contacts: contact});
+    res.render('main', {contacts: contact, account: account});
 });
 
 
